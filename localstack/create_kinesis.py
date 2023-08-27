@@ -6,15 +6,9 @@ client = boto3.client('kinesis', region_name='ap-northeast-1',
                       aws_secret_access_key="dummy"
                       )
 
-response = client.list_streams(
-    ExclusiveStartStreamName='test'
+client.create_stream(
+    StreamName='test',
+    StreamModeDetails={
+        'StreamMode': 'ON_DEMAND'
+    }
 )
-
-print(response)
-if not response['StreamNames']:
-    client.create_stream(
-        StreamName='test',
-        StreamModeDetails={
-            'StreamMode': 'ON_DEMAND'
-        }
-    )

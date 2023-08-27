@@ -6,12 +6,6 @@ client = boto3.client('sqs', region_name='ap-northeast-1',
                       aws_secret_access_key="dummy"
                       )
 
-response = client.list_queues(
-    QueueNamePrefix='test'
+client.create_queue(
+    QueueName='test'
 )
-
-print(response)
-if not response['QueueUrls']:
-    client.create_queue(
-        QueueName='test'
-    )
